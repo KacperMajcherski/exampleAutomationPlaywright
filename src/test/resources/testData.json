@@ -1,0 +1,9 @@
+{
+  "testUser1": {
+    "firstName": "Kacper",
+    "lastName": "Tester",
+    "username": "KacperTester1234",
+    "password": "Start123!",
+    "email": "testkacperemail123!%@example.com"
+  }
+}

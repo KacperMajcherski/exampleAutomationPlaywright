@@ -28,42 +28,59 @@ public class LoginPage extends TestMain {
     public Locator loggedUserName = page.locator(".account");
 
 
-    public void login(String email, String password) {
+    public void login(String firstName, String lastName, String email, String password) {
+        assertThat(Pages.mainPage.signInBtn).isVisible();
         Pages.mainPage.clickSignInBtn();
-        assertThat(this.loginRegisterForms).isVisible();
-        assertThat(this.emailField).isVisible();
-        assertThat(this.passwordField).isVisible();
-        assertThat(this.loginBtn).isVisible();
-        this.emailField.fill(email);
-        this.passwordField.fill(password);
-        assertThat(this.loginBtn).isEnabled();
-        this.loginBtn.click();
+        assertThat(loginRegisterForms).isVisible();
+        assertThat(emailField).isVisible();
+        assertThat(passwordField).isVisible();
+        assertThat(loginBtn).isVisible();
+        emailField.fill(email);
+        passwordField.fill(password);
+        assertThat(loginBtn).isEnabled();
+        loginBtn.click();
+        assertThat(Pages.myAccountPage.pageTitle).isVisible();
+        assertThat(loggedUserName).containsText(firstName+" "+lastName);
+    }
+
+    public void logout() {
+        assertThat(Pages.mainPage.signoutBtn).isVisible();
+        Pages.mainPage.signoutBtn.click();
+        assertThat(loginPageTitle).isVisible();
+        assertThat(loginRegisterForms).isVisible();
     }
 
     public void register(String email, String password, String[] personalData) {
         Pages.mainPage.clickSignInBtn();
-        assertThat(this.loginRegisterForms).isVisible();
-        assertThat(this.registerEmailField).isVisible();
-        this.registerEmailField.fill(email);
-        assertThat(this.registerBtn).isEnabled();
-        this.registerBtn.click();
-        assertThat(this.createAccountSectionTitle).isVisible();
-        assertThat(this.genderMaleRadioBtn).isEnabled();
-        assertThat(this.firstNameField).isVisible();
-        assertThat(this.lastNameField).isVisible();
-        assertThat(this.birthDaySelect).isEnabled();
-        assertThat(this.birthMonthSelect).isEnabled();
-        assertThat(this.birthYearSelect).isEnabled();
-        this.genderMaleRadioBtn.click();
-        this.firstNameField.fill(personalData[0]);
-        this.lastNameField.fill(personalData[1]);
-        this.birthDaySelect.selectOption(personalData[2]);
-        this.birthMonthSelect.selectOption(personalData[3]);
-        this.birthYearSelect.selectOption(personalData[4]);
-        assertThat(this.submitRegisterBtn).isEnabled();
-        this.submitRegisterBtn.click();
+        assertThat(loginRegisterForms).isVisible();
+        assertThat(registerEmailField).isVisible();
+        //Enter the generated e-mail
+        registerEmailField.fill(email);
+        assertThat((registerEmailField)).hasValue(email);
+        assertThat(registerBtn).isEnabled();
+        registerBtn.click();
+        //Fields are visible
+        assertThat(createAccountSectionTitle).isVisible();
+        assertThat(genderMaleRadioBtn).isEnabled();
+        assertThat(firstNameField).isVisible();
+        assertThat(lastNameField).isVisible();
+        assertThat(birthDaySelect).isEnabled();
+        assertThat(birthMonthSelect).isEnabled();
+        assertThat(birthYearSelect).isEnabled();
+        //Fill all fields
+        genderMaleRadioBtn.click();
+        firstNameField.fill(personalData[0]);
+        lastNameField.fill(personalData[1]);
+        passwordField.fill(password);
+        birthDaySelect.selectOption(personalData[2]);
+        birthMonthSelect.selectOption(personalData[3]);
+        birthYearSelect.selectOption(personalData[4]);
+        assertThat(submitRegisterBtn).isEnabled();
+        //Submit
+        submitRegisterBtn.click();
         assertThat(Pages.myAccountPage.pageTitle).isVisible();
-        assertThat(this.loggedUserName).hasText(personalData[0]+" "+personalData[1]);
+        //Make sure that we are logged in as our user
+        assertThat(loggedUserName).hasText(personalData[0]+" "+personalData[1]);
     }
 
 }

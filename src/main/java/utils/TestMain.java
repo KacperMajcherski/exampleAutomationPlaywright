@@ -10,7 +10,7 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 
 public class TestMain {
 
-    String generatedEmail;
+
 
     protected static Playwright playwright;
     protected static Browser browser;
@@ -47,7 +47,7 @@ public class TestMain {
         assertThat(Pages.tenMinuteMailPage.consentBtn).isEnabled();
         Pages.tenMinuteMailPage.consentBtn.click();
         assertThat(Pages.tenMinuteMailPage.tenMinuteMailMenuBar).isVisible();
-        generatedEmail = Pages.tenMinuteMailPage.emailAddressField.textContent();
+        String generatedEmail = Pages.tenMinuteMailPage.emailAddressField.inputValue();
         return generatedEmail;
     }
 

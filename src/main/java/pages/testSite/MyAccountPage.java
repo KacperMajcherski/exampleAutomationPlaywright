@@ -5,6 +5,6 @@ import utils.TestMain;
 
 public class MyAccountPage extends TestMain {
 
-    public Locator pageTitle = page.locator("h1[@class='page-heading' and text()='My account']");
+    public Locator pageTitle = page.locator("h1.page-heading").filter(new Locator.FilterOptions().setHasText("My account"));
 
 }

@@ -14,7 +14,7 @@ public class RegisterNewUser extends TestMain {
     void testRegisterNewUser() {
         Pages.mainPage.openMainPage();
         Pages.loginPage.register(generatedEmail, password, registrationData);
-
+        System.out.println("The user has been registered successfully");
     }
 
 

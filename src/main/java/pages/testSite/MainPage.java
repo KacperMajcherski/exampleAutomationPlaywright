@@ -8,7 +8,8 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 
 public class MainPage extends TestMain {
 
-    Locator signInBtn = page.locator("a[class='login']");
+    public Locator signInBtn = page.locator("a.login");
+    public Locator signoutBtn = page.locator("a[class='logout']");
 
     void clickSignInBtn() {
         assertThat(this.signInBtn).isEnabled();
