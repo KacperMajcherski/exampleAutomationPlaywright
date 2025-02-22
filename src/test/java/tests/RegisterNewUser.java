@@ -1,5 +1,4 @@
 package tests;
-import core.Constants;
 import org.junit.jupiter.api.Test;
 import pages.Pages;
 import utils.TestMain;
@@ -7,15 +6,14 @@ import utils.TestMain;
 public class RegisterNewUser extends TestMain {
 
     String generatedEmail = Pages.tenMinuteMailPage.getRandomEmail();
-    String password = Constants.password;
-    String[] registrationData = Constants.registrationData;
+    String password = "Start123123123!";
+    String[] registrationData =  {"Kacper", "Tester", "26", "9", "1999"};
 
     @Test
-    void testRegisterNewUser() {
+    void registerNewUserTest() {
         Pages.mainPage.openMainPage();
         Pages.loginPage.register(generatedEmail, password, registrationData);
-
+        System.out.println("The user has been registered successfully");
     }
-
 
 }
