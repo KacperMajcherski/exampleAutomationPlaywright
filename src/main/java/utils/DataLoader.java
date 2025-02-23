@@ -22,20 +22,37 @@ public class DataLoader {
         }
     }
 
-    public static UserData loadUserData(String userType) {
-        if (!testData.has(userType)) {
-            throw new RuntimeException("❌ Użytkownik '" + userType + "' nie istnieje w testData.json!");
-        }
-        JSONObject userNode = testData.getJSONObject(userType);
-        return new UserData(userNode.getString("firstName"), userNode.getString("lastName"), userNode.getString("username"), userNode.getString("password"), userNode.getString("email"));
+//    public static UserData loadUserData(String userType) {
+//        if (!testData.has(userType)) {
+//            throw new RuntimeException("❌ Użytkownik '" + userType + "' nie istnieje w testData.json!");
+//        }
+//        JSONObject userNode = testData.getJSONObject(userType);
+//        return new UserData(userNode.getString("firstName"), userNode.getString("lastName"), userNode.getString("username"), userNode.getString("password"), userNode.getString("email"));
+//    }
+//
+//    public static String get(String userType, String field) {
+//        if (!testData.has(userType) || !testData.getJSONObject(userType).has(field)) {
+//            throw new RuntimeException("❌ Pole '" + field + "' nie istnieje dla użytkownika '" + userType + "'");
+//        }
+//        return testData.getJSONObject(userType).getString(field);
+//    }
+public static UserData loadUserData(String userType) {
+    if (!testData.has(userType)) {
+        throw new RuntimeException("❌ Użytkownik '" + userType + "' nie istnieje w testData.json!");
     }
 
-    public static String get(String userType, String field) {
-        if (!testData.has(userType) || !testData.getJSONObject(userType).has(field)) {
-            throw new RuntimeException("❌ Pole '" + field + "' nie istnieje dla użytkownika '" + userType + "'");
-        }
-        return testData.getJSONObject(userType).getString(field);
-    }
+    JSONObject userNode = testData.getJSONObject(userType);
+
+    System.out.println("🔍 Załadowane dane użytkownika: " + userNode.toString());
+
+    return new UserData(
+            userNode.getString("firstName"),
+            userNode.getString("lastName"),
+            userNode.getString("username"),
+            userNode.getString("password"),
+            userNode.has("email") ? userNode.getString("email") : null // Zapobiega NullPointerException
+    );
+}
 
     public static class UserData {
         public final String firstName;

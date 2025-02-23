@@ -10,4 +10,6 @@ public class Pages {
     public static LoginPage loginPage = new LoginPage();
     public static MainPage mainPage = new MainPage();
     public static MyAccountPage myAccountPage = new MyAccountPage();
+    public static ProductsPage productsPage = new ProductsPage();
+    public static CheckoutPage checkoutPage = new CheckoutPage();
 }

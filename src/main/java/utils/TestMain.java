@@ -4,13 +4,9 @@ import com.microsoft.playwright.*;
 import org.junit.jupiter.api.*;
 import pages.Pages;
 
-import java.util.UUID;
-
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class TestMain {
-
-
 
     protected static Playwright playwright;
     protected static Browser browser;
@@ -51,8 +47,4 @@ public class TestMain {
         return generatedEmail;
     }
 
-    public static String getRandomUUID() {
-        UUID randomUUID = UUID.randomUUID();
-        return randomUUID.toString().replaceAll("_", "");
-    }
 }

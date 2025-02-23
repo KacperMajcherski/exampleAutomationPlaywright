@@ -1,4 +1,4 @@
-package tests;
+package tests.loginAndUserCreation;
 import org.junit.jupiter.api.Test;
 import pages.Pages;
 import utils.TestMain;
@@ -11,7 +11,9 @@ public class RegisterNewUser extends TestMain {
 
     @Test
     void registerNewUserTest() {
+        //1. Navigate to the test site
         Pages.mainPage.openMainPage();
+        //2. Register the user using the provided userdata and assert that the user is logged in
         Pages.loginPage.register(generatedEmail, password, registrationData);
         System.out.println("The user has been registered successfully");
     }

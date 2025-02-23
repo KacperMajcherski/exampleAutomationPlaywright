@@ -35,6 +35,7 @@ public class LoginPage extends TestMain {
         assertThat(emailField).isVisible();
         assertThat(passwordField).isVisible();
         assertThat(loginBtn).isVisible();
+        System.out.println(email);
         emailField.fill(email);
         passwordField.fill(password);
         assertThat(loginBtn).isEnabled();
